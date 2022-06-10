@@ -1,0 +1,10 @@
+{
+  "name": "@very-amused/slog",
+  "version": "0.1.0",
+  "description": "Client to server logging utility.",
+  "main": "index.js",
+  "type": "module",
+  "repository": "git@github.com:very-amused/slog.git",
+  "author": "very-amused <very-amused@pm.me>",
+  "license": "MIT"
+}
