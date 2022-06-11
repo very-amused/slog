@@ -1,33 +1,20 @@
-import { createServer, type ServerOptions } from 'https'
-import { readFileSync, readdirSync } from 'fs'
-import { LogLevels, LogLevelHeader } from '../data.js'
+import { createServer } from 'https'
+import { readFileSync } from 'fs'
+import { LogLevels, LogLevelHeader, DefaultPort } from '../data.js'
 import { log } from './log.js'
+import config from '../../config.js'
 
-// Must contain *cert.pem and *privkey.pem
-const certsDir = process.env['SLOG_CERTS_DIR'] || '~/.certs'
+// Port for the server to listen on
+const port = config.port || DefaultPort
 
-let key: Buffer|null = null,
-  cert: Buffer|null = null
-
-// Use the first files in $SLOG_CERTS_DIR that end in privkey.pem and cert.pem for TLS
-for (const file of readdirSync(certsDir)) {
-  if (file.endsWith('privkey.pem') && key === null) {
-    key = readFileSync(file)
-  } else if (file.endsWith('cert.pem') && cert === null) {
-    cert = readFileSync(file)
-  }
-}
-if (key === null || cert === null) {
-  throw new ReferenceError(`Unable to find *privkey.pem and *cert.pem in ${certsDir}`)
+// Load TLS certificate and key
+const cert = readFileSync(`${config.certsDir}/fullchain.pem`)
+const key = readFileSync(`${config.certsDir}/privkey.pem`)
+if (key == null || cert == null) {
+  throw new ReferenceError(`Unable to find privkey.pem and fullchain.pem in ${config.certsDir}`)
 }
 
-const options: ServerOptions = {
-  key,
-  cert
-}
-
-
-createServer(options, async (req, res) => {
+createServer({ key, cert }, async (req, res) => {
   // Validate request method and content type
   if (req.method !== 'POST') {
     res.writeHead(405)
@@ -52,5 +39,6 @@ createServer(options, async (req, res) => {
   // Log the message to the server console
   log(body, logLevel)
   res.writeHead(200)
+}).listen(port, () => {
+  log(`Slog server listening on port ${port}`, LogLevels.Info)
 })
-
