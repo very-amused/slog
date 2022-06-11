@@ -1,4 +1,4 @@
-import { LogLevels } from '../log-levels.js'
+import { LogLevels } from '../data.js'
 
 const months = [
   'Jan',
@@ -15,7 +15,7 @@ const months = [
   'Dec'
 ]
 
-/* Format a message with timestamp and log priority */
+/* @internal Format a message with timestamp and log priority */
 function formatMessage(message: string, logLevel: LogLevels): string {
   const d = new Date()
   const timestamp = `${months[d.getMonth()]} ${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}:${d.getMilliseconds()}`

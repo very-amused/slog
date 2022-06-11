@@ -1,6 +1,6 @@
 import { createServer, type ServerOptions } from 'https'
 import { readFileSync, readdirSync } from 'fs'
-import { LogLevels, LogLevelHeader } from '../log-levels.js'
+import { LogLevels, LogLevelHeader } from '../data.js'
 import { log } from './log.js'
 
 // Must contain *cert.pem and *privkey.pem

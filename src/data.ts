@@ -6,3 +6,4 @@ export enum LogLevels {
 }
 
 export const LogLevelHeader = 'X-SLOG-LOGLEVEL'
+export const DefaultPort = 4040
