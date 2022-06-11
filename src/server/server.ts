@@ -15,10 +15,12 @@ export const server = createServer({ key, cert }, async (req, res) => {
   // Validate request method and content type
   if (req.method !== 'POST') {
     res.writeHead(405)
+    res.end()
     return
   }
   if (req.headers['content-type'] !== 'text/plain') {
     res.writeHead(415)
+    res.end()
     return
   }
 
@@ -36,4 +38,5 @@ export const server = createServer({ key, cert }, async (req, res) => {
   // Log the message to the server console
   log(body, logLevel)
   res.writeHead(200)
+  res.end()
 })
