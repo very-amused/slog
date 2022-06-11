@@ -3,12 +3,14 @@ import typescript from '@rollup/plugin-typescript'
 const tsconfig = 'tsconfig.json'
 const serverExternal = ['https', 'fs', 'node:path']
 
+/** @type {import('rollup').RollupOptions} */
 export default [
   {
     input: 'src/server/index.ts',
     output: {
       dir: 'build/server',
-      format: 'es'
+      format: 'es',
+      intro: '#!/usr/bin/env node' // Needed to make the server directly executable, so `yarn slog` can start the installated server
     },
     plugins: [
       typescript({

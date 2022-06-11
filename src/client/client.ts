@@ -15,7 +15,7 @@ export class SlogClient {
   }
 
   /* Send a log message to the registered Slog server */
-  private async sendLog(message: string, logLevel: LogLevels): Promise<void> {
+  private async sendLog(message: unknown, logLevel: LogLevels): Promise<void> {
     try {
       const res = await fetch(this.serverURL, {
         method: 'POST',
@@ -23,7 +23,7 @@ export class SlogClient {
           'Content-Type': 'text/plain',
           [LogLevelHeader]: logLevel
         },
-        body: message
+        body: `${message}`
       })
       if (res.status !== 200) {
         console.error(`[SLOG] Error sending log to server (server URL: ${this.serverURL}, response status: ${res.status})`)
@@ -34,19 +34,19 @@ export class SlogClient {
     }
   }
 
-  async log(message: string): Promise<void> {
+  async log(message: unknown): Promise<void> {
     return this.sendLog(message, LogLevels.Info)
   }
 
-  async warn(message: string): Promise<void> {
+  async warn(message: unknown): Promise<void> {
     return this.sendLog(message, LogLevels.Warning)
   }
 
-  async error(message: string): Promise<void> {
+  async error(message: unknown): Promise<void> {
     return this.sendLog(message, LogLevels.Error)
   }
 
-  async debug(message: string): Promise<void> {
+  async debug(message: unknown): Promise<void> {
     return this.sendLog(message, LogLevels.Debug)
   }
 }

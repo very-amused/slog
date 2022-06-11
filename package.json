@@ -7,8 +7,12 @@
   "repository": "git@github.com:very-amused/slog.git",
   "author": "very-amused <very-amused@pm.me>",
   "license": "MIT",
+  "bin": {
+    "slog": "./build/server/index.js"
+  },
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "postbuild": "chmod +x build/server/index.js"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
