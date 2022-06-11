@@ -1,4 +1,4 @@
-declare type ServerConfig = {
+export declare type ServerConfig = {
   certsDir: string
   port?: number
 }

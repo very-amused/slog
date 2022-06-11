@@ -20,5 +20,19 @@ export default [
       })
     ],
     external: serverExternal
+  },
+  {
+    input: 'src/client/index.ts',
+    output: {
+      dir: 'build/client',
+      format: 'es'
+    },
+    plugins: [
+      typescript({
+        tsconfig,
+        declaration: false,
+        outDir: 'build/client'
+      })
+    ]
   }
 ]

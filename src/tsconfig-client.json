@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "outDir": "../build",
+    "composite": true
+  },
+  "include": ["*.ts", "client/*.ts", "../../slog.config.d.ts"]
+}

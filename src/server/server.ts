@@ -4,7 +4,6 @@ import { LogLevels, LogLevelHeader } from '../data.js'
 import { log } from './log.js'
 import { config } from './config.js'
 
-
 // Load TLS certificate and key
 const cert = readFileSync(`${config.certsDir}/fullchain.pem`)
 const key = readFileSync(`${config.certsDir}/privkey.pem`)

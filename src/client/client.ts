@@ -1,20 +1,19 @@
 import { LogLevels, LogLevelHeader, DefaultPort } from '../data.js'
 
-
-/* An Slog client instance, used to send logs to a destination server. */
+/** An Slog client instance, used to send logs to a destination server. */
 export class SlogClient {
   readonly serverURL: string
-  /* The default port used for Slog communication. */
+  /** The default port used for Slog communication. */
   static readonly DefaultPort = DefaultPort 
 
   /**
    * @param serverURL The destination server URL. Must use HTTPS and provide a domain and port.
    */
-  constructor(serverURL: `https://${string}:${string}`) {
+  constructor(serverURL: `https://${string}:${number}`) {
     this.serverURL = serverURL
   }
 
-  /* Send a log message to the registered Slog server */
+  /** Send a log message to the registered Slog server */
   private async sendLog(message: unknown, logLevel: LogLevels): Promise<void> {
     try {
       const res = await fetch(this.serverURL, {
