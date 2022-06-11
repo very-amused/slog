@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "CommonJS",
+    "module": "esnext",
     "declaration": true,
     "strict": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "stripInternal": true
+    "stripInternal": true,
+    "baseUrl": ".",
+    "paths": {
+      "@config": ["config"]
+    }
   }
 }

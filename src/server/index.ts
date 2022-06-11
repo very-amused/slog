@@ -2,7 +2,7 @@ import { createServer } from 'https'
 import { readFileSync } from 'fs'
 import { LogLevels, LogLevelHeader, DefaultPort } from '../data.js'
 import { log } from './log.js'
-import config from '../../config.js'
+import config from '@config'
 
 // Port for the server to listen on
 const port = config.port || DefaultPort
