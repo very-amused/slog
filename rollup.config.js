@@ -1,9 +1,7 @@
 import typescript from '@rollup/plugin-typescript'
-import alias from '@rollup/plugin-alias'
 
 const tsconfig = 'tsconfig.json'
-const relativeConfigPath = '../../config.js'
-const serverExternal = ['https', 'fs', relativeConfigPath]
+const serverExternal = ['https', 'fs', 'node:path']
 
 export default [
   {
@@ -17,11 +15,6 @@ export default [
         tsconfig,
         declaration: false,
         outDir: 'build/server'
-      }),
-      alias({
-        entries: [
-          { find: '@config', replacement: relativeConfigPath }
-        ]
       })
     ],
     external: serverExternal

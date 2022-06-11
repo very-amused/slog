@@ -2,7 +2,10 @@ import { createServer } from 'https'
 import { readFileSync } from 'fs'
 import { LogLevels, LogLevelHeader, DefaultPort } from '../data.js'
 import { log } from './log.js'
-import config from '@config'
+// Dynamically import $cwd/slog.config.js
+import * as path from 'node:path'
+import type ServerConfig from '../../slog.config'
+const config: typeof ServerConfig = (await import(path.resolve(process.cwd(), 'slog.config.js'))).default
 
 // Port for the server to listen on
 const port = config.port || DefaultPort

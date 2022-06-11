@@ -6,10 +6,6 @@
     "strict": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "stripInternal": true,
-    "baseUrl": ".",
-    "paths": {
-      "@config": ["config"]
-    }
+    "stripInternal": true
   }
 }
