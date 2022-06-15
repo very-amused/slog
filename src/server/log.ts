@@ -1,4 +1,7 @@
 import { LogLevels } from '../data.js'
+import { config } from './config.js'
+// Use color based on config.useColor, defaults to true
+const useColor = (config.useColor == null || config.useColor)
 
 const months = [
   'Jan',
@@ -45,7 +48,8 @@ function formatMessage(message: string, logLevel: LogLevels): string {
 
   // Color-code output based on log level
   let code = ''
-  switch (logLevel) {
+  const resetCode = useColor ? ColorCodes.Reset : '' // Avoid printing any color codes if config.useColor is set to false, including the closing reset code
+  if (useColor) switch (logLevel) {
   case LogLevels.Info: // No color
     break
   case LogLevels.Warning:
@@ -59,7 +63,7 @@ function formatMessage(message: string, logLevel: LogLevels): string {
     break
   }
 
-  return `${code}[${timestamp}] [${logLevel}] ${message}${ColorCodes.Reset}`
+  return `${code}[${timestamp}] [${logLevel}] ${message}${resetCode}`
 }
 
 /* Log a message to the server console */

@@ -17,7 +17,7 @@ export default {
 }
 ```
 
-Slog's server will only run over HTTPS, and it requires a certificate directory containing a `fullchain.pem` and `privkey.pem` file, containing a TLS certificate chain and private key respectively. This directory is specified using the `certsDir` option in `slog.config.js`.
+Slog's server will only run over HTTPS, and it requires a certificate directory containing a `fullchain.pem` and `privkey.pem` file, these files containing a TLS certificate chain and private key respectively. This directory is specified using the `certsDir` option in `slog.config.js`.
 
 ## Usage
 1. Start Slog's server.
@@ -38,3 +38,6 @@ slog.log('Important info')
 slog.error({ message: 'something went wrong', code: 1 })
 ```
 4. Logs are displayed on the Slog server console.
+
+## Caveats
+1. Unless `useColor` is set to `false` in `slog.config.js`, output will be colorized. A terminal with standard ANSI colors is recommended, output may be difficult to read or understand with custom terminal color themes.
