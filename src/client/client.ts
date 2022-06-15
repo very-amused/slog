@@ -13,7 +13,7 @@ export class SlogClient {
     this.serverURL = serverURL
   }
 
-  /** Send a log message to the registered Slog server */
+  /** @internal Send a log message to the registered Slog server */
   private async sendLog(message: unknown, logLevel: LogLevels): Promise<void> {
     try {
       const res = await fetch(this.serverURL, {
