@@ -2,7 +2,8 @@
   "name": "@very-amused/slog",
   "version": "0.1.0",
   "description": "Client to server logging utility.",
-  "main": "index.js",
+  "main": "build/client/index.js",
+  "types": "build/client/index.d.ts",
   "type": "module",
   "repository": "git@github.com:very-amused/slog.git",
   "author": "very-amused <very-amused@pm.me>",
@@ -11,9 +12,12 @@
     "slog": "./build/server/index.js"
   },
   "scripts": {
+    "slog": "./build/server/index.js",
     "build": "rollup -c",
     "postbuild": "chmod +x build/server/index.js ; tsc -b src/tsconfig-client.json",
-    "build:docs": "typedoc src/client/index.ts --out docs"
+    "build:docs": "typedoc src/client/index.ts --out docs",
+    "clean": "rm -rf build",
+    "prepack": "yarn clean && yarn build"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
@@ -25,9 +29,8 @@
     "eslint-plugin-unicorn": "^42.0.0",
     "rollup": "^2.75.6",
     "typedoc": "^0.22.17",
+    "typedoc-plugin-markdown": "^3.12.1",
     "typescript": "^4.7.3"
   },
-  "dependencies": {
-    "typedoc-plugin-markdown": "^3.12.1"
-  }
+  "dependencies": {}
 }

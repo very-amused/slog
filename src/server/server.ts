@@ -12,6 +12,17 @@ if (key == null || cert == null) {
 }
 
 export const server = createServer({ key, cert }, async (req, res) => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    // TODO: configurable CORS options
+    res.setHeader('Access-Control-Allow-Origin', req.headers['origin'] || '*')
+    res.setHeader('Access-Control-Allow-Headers', LogLevelHeader)
+    res.setHeader('Access-Control-Allow-Methods', 'POST')
+    res.writeHead(200)
+    res.end()
+    return
+  }
+
   // Validate request method and content type
   if (req.method !== 'POST') {
     res.writeHead(405)

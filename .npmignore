@@ -1,0 +1,6 @@
+# Only pack the specified files
+*
+!README.md
+!LICENSE
+!build/**
+build/**.tsbuildinfo
