@@ -1,6 +1,6 @@
 {
   "name": "@very-amused/slog",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Client to server logging utility.",
   "main": "build/client/index.js",
   "types": "build/client/index.d.ts",
@@ -31,6 +31,5 @@
     "typedoc": "^0.22.17",
     "typedoc-plugin-markdown": "^3.12.1",
     "typescript": "^4.7.3"
-  },
-  "dependencies": {}
+  }
 }

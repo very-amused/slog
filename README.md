@@ -1,5 +1,5 @@
 # Slog
-TS/JS client to server logging.
+TS/JS client to server logging. This library is functional, but not actively maintained other than security updates.
 
 ## Installation
 ```
